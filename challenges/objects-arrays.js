@@ -73,8 +73,11 @@ const graduates = [{"id":1,"first_name":"Cynde","university":"Missouri Southern 
 /* Request 1: Create a new array called universities that contains all the universities in the graduates array.  
 
 Once you have the new array created, sort the universities alphabetically and log the result. */
-const universities = graduates.map(first_name =>first_name.university);
-console.log(universities.sort());
+const universities = [];
+ graduates.map(item => {
+  universities.push(item.university)
+ }); 
+ console.log(universities.sort()); 
 
 
 /* Request 2: Create a new array called contactInfo that contains both first name and email of each student. 
@@ -84,21 +87,22 @@ Name email@example.com
 
 Log the result of your new array. */
 
+const contactInfo = [];
+graduates.map(item => {
+  contactInfo.push(`first name: ${item.first_name}, email: ${item.email}.`)
+});
+contactInfo; 
 
-const firstName = graduates.map(first_name => first_name.first_name);
-const email = graduates.map(first_name => first_name.email)
-
-//console.log(firstName);
-//console.log(email)
-
-const contactInfo =[firstName + " "+email]
-
-console.log(contactInfo);
 
 /* Request 3: Find out how many universities have the string "Uni" included in their name. Create a new array called uni that contains them all. Log the result. */
-const uni = graduates.map(first_name => first_name.university);
-  for (let i = 0; i < graduates.length; i++);
-console.log(uni.includes("uni"));
+const uni = [];
+
+for(let i = 0; i < graduates.length; i++){
+ if(graduates[i].university.includes('Uni')){
+   uni.push(graduates[i].university);
+ }
+}
+console.log(uni);
 
 
 // ==== ADVANCED Array Methods ====
@@ -122,8 +126,11 @@ zooAnimals = [{"animal_name":"Jackal, asiatic","population":5,"scientific_name":
 The zoo wants to display both the scientific name and the animal name in front of the habitats.  Return an array with only the animal and scientific names in it.  The individual values in the array should look like this "Name: Jackal, asiatic, Scientific: Canis aureus."
 
 */
-const animalNames = zooAnimals.animal_name.forEach();
-console.log(animalNames);
+const animalNames = []; 
+  zooAnimals.forEach(item => {
+    animalNames.push(`Name:${item.animal_name}, Scientific ${item.scientific_name}. `)
+  });
+console.log(animalNames); 
 
 /* Request 2: .map()    
 
@@ -132,14 +139,21 @@ The zoos need a list of all their animal's names (names only, not scientific) co
 */
 
 const lowerCase = [];
+  zooAnimals.map(item => {
+    lowerCase.push(`${item.animal_name.toLowerCase()}`); 
+  })
 console.log(lowerCase); 
 
 /* Request 3: .filter() 
 
-The zoos are concenred about animals with a lower population count. Find out which animals have a population less than 5.
+The zoos are concerned about animals with a lower population count. Find out which animals have a population less than 5.
 
 */
 const lowerPopulation = [];
+  zooAnimals.filter(item => {
+    if (item.population < 5)
+      lowerPopulation.push(`${item.animal_name}`);
+  })
 console.log(lowerPopulation);
 
 /* Request 4: .reduce() 
@@ -147,7 +161,13 @@ console.log(lowerPopulation);
 The zoos need to know their total animal population across the United States.  Find the total population from all the zoos using the .reduce() method.
 
 */
-const populationTotal = 0;
+const populationTotal = [];
+
+let Answer = zooAnimals.reduce(function(acc, curr){
+ return acc + curr.population;
+}, 0);
+
+populationTotal.push(Answer);
 console.log(populationTotal);
 
 

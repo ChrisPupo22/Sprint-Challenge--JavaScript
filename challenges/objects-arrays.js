@@ -168,7 +168,7 @@ let Answer = zooAnimals.reduce(function(acc, curr){
 }, 0);
 
 populationTotal.push(Answer);
-console.log(populationTotal);
+console.log(Number(populationTotal));
 
 
 /* 
